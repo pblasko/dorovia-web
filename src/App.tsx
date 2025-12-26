@@ -1,4 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import heroWorldMobil from "/src/assets/background/hero-world-purpil-mobil.png";
+import heroWorldDesktop from "/src/assets/background/hero-world-purpil-4k.png";
+import advisoryStackMobile from "./assets/diagrams/advisory-stack-mobil.png";
+import advisoryStackDesktop from "./assets/diagrams/advisory-stack-desktop.png";
+
 
 const MD_BREAKPOINT = 768; // Tailwind md = 768px
 
@@ -161,13 +166,13 @@ export default function App() {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background images (stable) */}
         <img
-          src="/src/assets/background/hero-world-purpil-mobil.png"
+          src={heroWorldMobil}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover md:hidden"
         />
         <img
-          src="/src/assets/background/hero-world-purpil-4k.png"
+          src={heroWorldDesktop}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 hidden h-full w-full object-cover md:block"
@@ -208,9 +213,88 @@ export default function App() {
           </div>
         </div>
       </section>
+      {/*  — responsive  */}
+      <section
+        id="services"
+        className="relative bg-[#F6F1EA] text-[#1E2A3B] overflow-hidden"
+      >
+        {/* finom háttér glow / gradient */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-24 -right-32 h-[420px] w-[420px] rounded-full bg-purple-300/25 blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 h-[420px] w-[420px] rounded-full bg-emerald-300/15 blur-3xl" />
+        </div>
 
-      {/* placeholders */}
-      <section id="services" className="min-h-screen bg-white" />
+        <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-24">
+          <div className="grid items-center gap-12 md:grid-cols-2 md:gap-14">
+            {/* LEFT / TEXT */}
+            <div>
+              <h2 className="text-[44px] leading-[1.05] font-semibold tracking-tight md:text-[56px]">
+                Advisory, not execution.
+                <br />
+                Structure, not speculation.
+              </h2>
+
+              <div className="mt-10 space-y-8">
+                {/* item */}
+                <div>
+                  <div className="text-[18px] font-semibold">Jurisdiction-aware design</div>
+                  <p className="mt-2 max-w-xl text-[16px] leading-relaxed text-[#1E2A3B]/80">
+                    We work within the realities of local regulation, not against them.
+                  </p>
+                </div>
+
+                <div>
+                  <div className="text-[18px] font-semibold">Legal-first architecture</div>
+                  <p className="mt-2 max-w-xl text-[16px] leading-relaxed text-[#1E2A3B]/80">
+                    Every engagement is structured through licensed legal partners.
+                  </p>
+                </div>
+
+                <div>
+                  <div className="text-[18px] font-semibold">Export-backed logic</div>
+                  <p className="mt-2 max-w-xl text-[16px] leading-relaxed text-[#1E2A3B]/80">
+                    Real economic activity stands behind every solution we advise on.
+                  </p>
+                </div>
+
+                <div>
+                  <div className="text-[18px] font-semibold">Transparency by default</div>
+                  <p className="mt-2 max-w-xl text-[16px] leading-relaxed text-[#1E2A3B]/80">
+                    Documentation, audit trails and compliance are embedded from day one.
+                  </p>
+                </div>
+              </div>
+
+              {/* CTA line */}
+              <div className="mt-12 flex items-center gap-2 text-[16px] text-[#1E2A3B]/85">
+                <span className="text-[18px]">→</span>
+                <a
+                  href="#about"
+                  className="underline underline-offset-4 decoration-black/20 hover:decoration-black/50 transition"
+                >
+                  See who we work with
+                </a>
+              </div>
+
+              {/* bottom gold rule */}
+              <div className="mt-14 h-px w-full bg-[#C9A24A]/70" />
+            </div>
+
+            {/* RIGHT / DIAGRAM */}
+            <div className="flex justify-center md:justify-end">
+              <picture className="w-full max-w-[520px]">
+                <source media="(min-width: 768px)" srcSet={advisoryStackDesktop} />
+                <img
+                  src={advisoryStackMobile}
+                  alt="Regulation / Legal / Trade & Export / Capital advisory stack"
+                  className="w-full h-auto drop-shadow-[0_24px_50px_rgba(0,0,0,0.14)]"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </section>
       <section id="about" className="min-h-screen bg-white" />
       <section id="careers" className="min-h-screen bg-white" />
       <section id="contact" className="min-h-screen bg-white" />
