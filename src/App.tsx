@@ -3,31 +3,24 @@ import { useEffect, useRef, useState } from "react";
 const MD_BREAKPOINT = 768; // Tailwind md = 768px
 
 export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);      // animáció állapota (open/close)
-  const [menuVisible, setMenuVisible] = useState(false); // mount/unmount (DOM-ban legyen-e)
+  const [menuOpen, setMenuOpen] = useState(false); // animation state
+  const [menuVisible, setMenuVisible] = useState(false); // mount/unmount
   const closeTimer = useRef<number | null>(null);
 
   const openMenu = () => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
-
-    // előbb felmountoljuk
     setMenuVisible(true);
-
-    // következő frame-ben állítjuk open-re, hogy az animáció biztosan lefusson
     requestAnimationFrame(() => setMenuOpen(true));
   };
 
   const closeMenu = () => {
-    // animáció indul (kicsúszás + fade)
     setMenuOpen(false);
-
-    // és csak utána unmount
     closeTimer.current = window.setTimeout(() => {
       setMenuVisible(false);
     }, 220);
   };
 
-  // Menü nyitásnál ne lehessen scrollolni a háttérben
+  // lock body scroll when menu open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
@@ -35,11 +28,10 @@ export default function App() {
     };
   }, [menuOpen]);
 
-  // Ha széles kijelzőre váltunk (md+), zárjuk a mobil menüt (pl. telefon forgatás)
+  // close mobile menu if switching to md+
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth >= MD_BREAKPOINT) {
-        // ha md+ lett, zárjuk és unmountoljuk
         setMenuOpen(false);
         setMenuVisible(false);
       }
@@ -54,7 +46,7 @@ export default function App() {
       {/* FIX HEADER */}
       <header className="fixed top-0 left-0 right-0 z-50">
         <div className="relative mx-auto flex h-16 items-center justify-between px-5">
-          {/* háttér */}
+          {/* background */}
           <div className="absolute inset-0 bg-white border-b border-black/5" />
 
           {/* Brand */}
@@ -89,7 +81,7 @@ export default function App() {
             </button>
           </nav>
 
-          {/* Hamburger (csak mobil) */}
+          {/* Hamburger (mobile only) */}
           <button
             className="relative z-10 inline-flex h-10 w-10 items-center justify-center rounded-md border border-black/10 bg-white/70 md:hidden"
             aria-label="Open menu"
@@ -139,32 +131,16 @@ export default function App() {
             </div>
 
             <nav className="p-5">
-              <a
-                className="block py-3 text-lg text-black/90"
-                href="#services"
-                onClick={closeMenu}
-              >
+              <a className="block py-3 text-lg text-black/90" href="#services" onClick={closeMenu}>
                 Services
               </a>
-              <a
-                className="block py-3 text-lg text-black/90"
-                href="#about"
-                onClick={closeMenu}
-              >
+              <a className="block py-3 text-lg text-black/90" href="#about" onClick={closeMenu}>
                 About
               </a>
-              <a
-                className="block py-3 text-lg text-black/90"
-                href="#careers"
-                onClick={closeMenu}
-              >
+              <a className="block py-3 text-lg text-black/90" href="#careers" onClick={closeMenu}>
                 Careers
               </a>
-              <a
-                className="block py-3 text-lg text-black/90"
-                href="#contact"
-                onClick={closeMenu}
-              >
+              <a className="block py-3 text-lg text-black/90" href="#contact" onClick={closeMenu}>
                 Contact
               </a>
 
@@ -181,47 +157,59 @@ export default function App() {
         </div>
       )}
 
-      {/* HERO – MOBILE FIRST */}
-      <section
-        className="
-          relative min-h-screen
-          bg-[url('/src/assets/background/hero-world-purpil-mobil.png')]
-          bg-cover bg-center bg-no-repeat
-          flex items-center
-        "
-      >
+      {/* HERO — responsive */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Background images (stable) */}
+        <img
+          src="/src/assets/background/hero-world-purpil-mobil.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover md:hidden"
+        />
+        <img
+          src="/src/assets/background/hero-world-purpil-4k.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 hidden h-full w-full object-cover md:block"
+        />
+
         {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/50 to-black/75" />
 
         {/* Content */}
-        <div className="relative z-10 px-6 pt-28 pb-16 max-w-md">
-          <h1 className="text-white text-4xl font-semibold leading-tight mb-6">
-            Achieve Your <br />
-            Business Goals
-          </h1>
+        <div className="relative z-10 w-full pt-28 pb-16">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="max-w-md md:max-w-xl lg:max-w-2xl">
+              <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6">
+                Achieve Your <br className="hidden md:block" />
+                Business Goals
+              </h1>
 
-          <p className="text-white/90 text-base leading-relaxed mb-8">
-            We provide expert advice to help you navigate complex challenges and drive success.
-          </p>
+              <p className="text-white/90 text-base md:text-lg leading-relaxed mb-8">
+                We provide expert advice to help you navigate complex challenges and drive success.
+              </p>
 
-          <div className="flex flex-col gap-4">
-            <button className="w-full rounded-lg bg-[#C9A24A] text-white font-medium py-3 hover:brightness-110 transition">
-              Our Services
-            </button>
+              {/* Buttons: stacked on mobile, inline from sm/md */}
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-3">
+                <button className="w-full sm:w-auto rounded-lg bg-[#C9A24A] text-white font-medium py-3 px-6 hover:brightness-110 transition">
+                  Our Services
+                </button>
 
-            <button className="w-full rounded-lg bg-[#1F5C5B] text-white font-medium py-3 hover:brightness-110 transition">
-              Get in Touch
-            </button>
-          </div>
+                <button className="w-full sm:w-auto rounded-lg bg-[#1F5C5B] text-white font-medium py-3 px-6 hover:brightness-110 transition">
+                  Get in Touch
+                </button>
+              </div>
 
-          {/* Trusted line */}
-          <div className="mt-10 text-xs text-white/70 leading-relaxed">
-            Global reach via local partners • Structured engagement • Discreet, compliant, role-defined advisory
+              {/* Trusted line */}
+              <div className="mt-10 text-xs md:text-sm text-white/70 leading-relaxed">
+                Global reach via local partners • Structured engagement • Discreet, compliant, role-defined advisory
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* placeholder sectionök */}
+      {/* placeholders */}
       <section id="services" className="min-h-screen bg-white" />
       <section id="about" className="min-h-screen bg-white" />
       <section id="careers" className="min-h-screen bg-white" />
