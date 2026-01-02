@@ -3,6 +3,9 @@ import heroWorldMobil from "/src/assets/background/hero-world-purpil-mobil.png";
 import heroWorldDesktop from "/src/assets/background/hero-world-purpil-4k.png";
 import advisoryStackMobile from "./assets/diagrams/advisory-stack-mobil.png";
 import advisoryStackDesktop from "./assets/diagrams/advisory-stack-desktop.png";
+import escrowIcon from "./assets/icons/escrow-protection.svg";
+import amlKycIcon from "./assets/icons/aml-kyc.svg";
+import auditTrailIcon from "./assets/icons/audit-trail.svg";
 
 
 const MD_BREAKPOINT = 768; // Tailwind md = 768px
@@ -213,6 +216,7 @@ export default function App() {
           </div>
         </div>
       </section>
+
       {/*  — responsive  */}
       <section
         id="services"
@@ -295,8 +299,182 @@ export default function App() {
           </div>
         </div>
       </section>
-      <section id="about" className="min-h-screen bg-white" />
-      <section id="careers" className="min-h-screen bg-white" />
+
+      {/* PARTNERS - Responsive */}
+      <section
+        id="partners"
+        className="relative bg-[#F6F1EA] text-[#1E2A3B] overflow-hidden"
+      >
+        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+
+          {/* TITLE */}
+          <h2
+            className="text-center text-[42px] md:text-[56px] font-semibold tracking-tight mb-10"
+            style={{ fontFamily: "Cinzel, serif" }}
+          >
+            Who We Work With
+          </h2>
+
+          {/* GOLD DIVIDER */}
+          <div className="mx-auto mb-14 h-px w-40 bg-[#C9A24A]/70" />
+
+          {/* CARDS */}
+          <div className="grid gap-8 md:grid-cols-3">
+
+            {/* INVESTORS */}
+            <div className="rounded-2xl border border-[#C9A24A]/60 bg-white px-8 py-10 shadow-sm">
+              <h3 className="text-[26px] font-semibold mb-6">Investors</h3>
+
+              <ul className="space-y-4 text-[16px] leading-relaxed text-[#1E2A3B]/85">
+                <li>Seeking structured USD exposure</li>
+                <li>Operating in regulated or restricted markets</li>
+                <li>Long-term, repeat participation mindset</li>
+                <li>Not suitable for retail or speculative capital</li>
+              </ul>
+
+              <div className="mt-8 text-[#C9A24A] font-medium">
+                <a href="#contact" className="hover:underline">
+                  Explore investor access →
+                </a>
+              </div>
+            </div>
+
+            {/* EXPORTERS */}
+            <div className="rounded-2xl border border-[#C9A24A]/60 bg-white px-8 py-10 shadow-sm">
+              <h3 className="text-[26px] font-semibold mb-6">Exporters</h3>
+
+              <ul className="space-y-4 text-[16px] leading-relaxed text-[#1E2A3B]/85">
+                <li>Active international trade flows</li>
+                <li>USD-denominated revenues</li>
+                <li>Need for predictable local liquidity</li>
+                <li>Advisory support only – no execution</li>
+              </ul>
+
+              <div className="mt-8 text-[#C9A24A] font-medium">
+                <a href="#contact" className="hover:underline">
+                  Understand exporter partnerships →
+                </a>
+              </div>
+            </div>
+
+            {/* LAW FIRMS */}
+            <div className="rounded-2xl border border-[#C9A24A]/60 bg-white px-8 py-10 shadow-sm">
+              <h3 className="text-[26px] font-semibold mb-6">
+                Law Firms & Advisors
+              </h3>
+
+              <ul className="space-y-4 text-[16px] leading-relaxed text-[#1E2A3B]/85">
+                <li>Licensed local presence</li>
+                <li>Escrow and compliance capability</li>
+                <li>Interest in cross-border mandates</li>
+                <li>Jurisdiction-specific cooperation</li>
+              </ul>
+
+              <div className="mt-8 text-[#C9A24A] font-medium">
+                <a href="#contact" className="hover:underline">
+                  Partner with D&apos;OROVIA →
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* FOOTNOTE */}
+          <p className="mt-14 text-center text-sm text-[#1E2A3B]/60 max-w-3xl mx-auto">
+            Engagements are evaluated on a case-by-case basis. Access is subject to
+            internal review.
+          </p>
+        </div>
+      </section>
+
+      {/* ABOUT - Responsive */}
+      <section
+        id="about"
+        className="relative bg-[#F6F1EA] text-[#1E2A3B] overflow-hidden"
+      >
+        {/* soft background glow */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-28 -right-40 h-[520px] w-[520px] rounded-full bg-purple-300/20 blur-3xl" />
+          <div className="absolute -bottom-32 -left-40 h-[520px] w-[520px] rounded-full bg-emerald-300/12 blur-3xl" />
+        </div>
+
+        <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-24">
+          {/* Title */}
+          <h2
+            className="mt-10 text-center text-[44px] leading-[1.05] md:text-[64px] text-[#1E2A3B]"
+            style={{ fontFamily: "Cinzel, serif" }}
+          >
+            Trust &amp; Governance
+          </h2>
+
+          {/* gold rule */}
+          <div className="mx-auto mt-8 h-px w-full max-w-5xl bg-[#C9A24A]/80" />
+
+          {/* 3 columns */}
+          <div className="mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
+            {/* Escrow */}
+            <div className="text-center">
+              <img
+                src={escrowIcon}
+                alt="Escrow Protection"
+                className="mx-auto h-16 w-16 md:h-[72px] md:w-[72px]"
+                loading="lazy"
+              />
+              <h3
+                className="mt-6 text-[34px] leading-tight text-[#1E2A3B]"
+                style={{ fontFamily: "Cinzel, serif" }}
+              >
+                Escrow Protection
+              </h3>
+              <p className="mx-auto mt-4 max-w-xs text-[18px] leading-relaxed text-[#1E2A3B]/75">
+                Transaction funds held securely in third-party escrow accounts
+              </p>
+            </div>
+
+            {/* AML & KYC */}
+            <div className="text-center">
+              <img
+                src={amlKycIcon}
+                alt="AML & KYC"
+                className="mx-auto h-16 w-16 md:h-[72px] md:w-[72px]"
+                loading="lazy"
+              />
+              <h3
+                className="mt-6 text-[34px] leading-tight text-[#1E2A3B]"
+                style={{ fontFamily: "Cinzel, serif" }}
+              >
+                AML &amp; KYC
+              </h3>
+              <p className="mx-auto mt-4 max-w-xs text-[18px] leading-relaxed text-[#1E2A3B]/75">
+                Strict anti-money laundering and know your customer protocols
+              </p>
+            </div>
+
+            {/* Audit */}
+            <div className="text-center">
+              <img
+                src={auditTrailIcon}
+                alt="Audit Trail"
+                className="mx-auto h-16 w-16 md:h-[72px] md:w-[72px]"
+                loading="lazy"
+              />
+              <h3
+                className="mt-6 text-[34px] leading-tight text-[#1E2A3B]"
+                style={{ fontFamily: "Cinzel, serif" }}
+              >
+                Audit Trail
+              </h3>
+              <p className="mx-auto mt-4 max-w-xs text-[18px] leading-relaxed text-[#1E2A3B]/75">
+                Licensed local transaction records for superior traceability
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom note */}
+          <p className="mt-16 text-center text-[18px] md:text-[20px] text-[#1E2A3B]/90">
+            No client funds or securities are held by D’OROVIA.
+          </p>
+        </div>
+      </section>
       <section id="contact" className="min-h-screen bg-white" />
     </main>
   );

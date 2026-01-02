@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <!-- STYLE / TOKENS -->
+  <!-- állítsd itt, ha kell: -->
+  <!-- stroke: a zöldes-teal vonalszín -->
+  <!-- sw: vonalvastagság -->
+  <defs>
+    <style>
+      :root { --stroke:#2F6B67; --sw:8; }
+    </style>
+
+    <!-- MASK: kivágjuk a dokumentumot a badge kör területén -->
+    <mask id="cutBadgeOut">
+      <!-- alap: minden látszik -->
+      <rect x="0" y="0" width="256" height="256" fill="white"/>
+      <!-- a badge alatti rész: ne látszódjon (fekete = kivágás) -->
+      <!-- kicsit nagyobb sugár, hogy biztosan ne üssön át vonal -->
+      <circle cx="190" cy="188" r="46" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- DOCUMENT (mask-kal, hogy ne fusson át a badge alatt) -->
+  <g mask="url(#cutBadgeOut)" stroke="var(--stroke)" stroke-width="var(--sw)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- dokumentum kontúr -->
+    <rect x="52" y="28" width="152" height="200" rx="22"/>
+    <!-- sorok -->
+    <path d="M84 78 H172"/>
+    <path d="M84 110 H172"/>
+    <path d="M84 142 H150"/>
+  </g>
+
+  <!-- BADGE (áttetsző: nincs fill) -->
+  <g stroke="var(--stroke)" stroke-width="var(--sw)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- kör -->
+    <circle cx="190" cy="188" r="40"/>
+    <!-- pipa -->
+    <path d="M176 188 L186 198 L206 176"/>
+  </g>
+</svg>
